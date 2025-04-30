@@ -1,0 +1,22 @@
+class Solution {
+    public boolean fun(TreeNode root,ListNode head){
+        if(root==null) return false;
+        
+        if(isMatch(root,head)) return true;
+
+        return fun(root.left,head) || fun(root.right,head);
+    }
+
+    public boolean isMatch(TreeNode root,ListNode head){
+        if(head==null) return true;
+        if(root==null || (root.val!=head.val)) return false;
+
+        return isMatch(root.left,head.next) || isMatch(root.right,head.next);
+
+    }
+    public boolean isSubPath(ListNode head, TreeNode root) {
+        if (root == null) return false;
+
+        return fun(root, head);
+    }
+}
